@@ -37,7 +37,7 @@ function CurrentWeatherApp()
     <br></br><br></br>
     {output !== null && output.cod === 200 &&
     <>
-      <h3>Weather Report:</h3>
+      <h3><u>Weather Report:</u></h3>
       <h4>{"Main: "+output.weather[0].main}</h4>
       <h4>{"Description: "+output.weather[0].description}</h4>
       <h4>{"Wind speed: "+output.wind.speed}</h4>
