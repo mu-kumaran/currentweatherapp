@@ -1,6 +1,8 @@
 
 import axios from "axios"
 import {useState} from "react"
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+
 function CurrentWeatherApp()
 {
   const [city,setCity] = useState("")
@@ -24,12 +26,14 @@ function CurrentWeatherApp()
     })
   }
   return(
-    <>
-    <h1>Welcome to Current Weather App</h1>
-    <h4>It is a Weather report using OpenWeathermap API</h4>
-    Enter your City: <input type="text" onChange={(e)=>cityfun(e)} placeholder="Enter city name" value={city}></input>
+    <div className="align-items-center justify-content-center text-center min-vh-100">
+    <h1><span className="text-primary">Welcome to Current Weather App</span></h1>
+    <p><b>This app gives the current weather data of your cities</b></p>
+    <label><b>Enter your city:</b> </label>
+    <input type="text" onChange={(e)=>cityfun(e)} placeholder="Enter city name" value={city}></input>
     <br></br><br></br>
-    <input type="button" onClick={showreport} value="Get weather report"></input>
+    {/* <input type="button" onClick={showreport} value="Get weather report"></input> */}
+    <button onClick={showreport} className="btn btn-success">Get weather report</button>
     <br></br><br></br>
     {output !== null && output.cod === 200 &&
     <>
@@ -43,7 +47,7 @@ function CurrentWeatherApp()
       <h3>{"Error: "+output.message}</h3>}
     {output !== null && output.cod === "400" &&
       <h3>{"Error: "+output.message}</h3>}
-    </>
+    </div>
   )
 }
 export default CurrentWeatherApp
