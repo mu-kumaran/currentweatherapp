@@ -17,7 +17,7 @@ function CurrentWeatherApp()
     var apiurl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`
     axios.get(apiurl).then(
       (res) => {
-        console.log(res.data)
+        // console.log(res.data)
         setOutput(res.data)
       }
     ).catch((err)=>{
@@ -36,7 +36,7 @@ function CurrentWeatherApp()
     <br></br><br></br>
     <button onClick={showreport} className="btn btn-success">Get weather report</button>
     <br></br><br></br>
-    
+
     {output !== null && output.cod === 200 && output.wind.gust !==undefined &&
     <div >
       <h3><u>Weather Report:</u></h3>
