@@ -15,10 +15,9 @@ function CurrentWeatherApp()
 
     const apikey = `${process.env.REACT_APP_WEATHER_API_KEY}`
     var apiurl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`
-    console.log(apiurl)
     axios.get(apiurl).then(
       (res) => {
-        console.log(res.data)
+        // console.log(res.data)
         setOutput(res.data)
       }
     ).catch((err)=>{
@@ -35,16 +34,20 @@ function CurrentWeatherApp()
     <label><b>Enter your city:</b> </label>
     <input type="text" onChange={(e)=>cityfun(e)} placeholder="Enter city name" value={city}></input>
     <br></br><br></br>
-    {/* <input type="button" onClick={showreport} value="Get weather report"></input> */}
     <button onClick={showreport} className="btn btn-success">Get weather report</button>
     <br></br><br></br>
     {output !== null && output.cod === 200 &&
-    <>
+    <div >
       <h3><u>Weather Report:</u></h3>
-      <h4>{"Weather now: "+output.weather[0].main}</h4>
+      <h4>{"Status: "+output.weather[0].main}</h4>
       <h4>{"Description: "+output.weather[0].description}</h4>
-      <h4>{"Wind speed: "+output.wind.speed}</h4>
-    </> 
+      <h4>{"Wind speed: "+output.wind.speed+" m/sec"}</h4>
+      <h4>{"Wind direction: "+output.wind.deg+" degrees"}</h4>
+      <h4>{"Wind gust: "+output.wind.gust+" m/sec"}</h4>
+      <h4>{"Temperature: "+`${(output.main.temp - 273.15).toFixed(1)}`} &deg;C</h4>
+      <h4>{"Pressure: "+output.main.pressure+" hPa"}</h4>
+      <h4>{"Humidity: "+output.main.humidity+" %"}</h4>
+    </div> 
     }
     {output !== null && output.cod === "404" &&
       <h3>{"Error: "+output.message}</h3>}
