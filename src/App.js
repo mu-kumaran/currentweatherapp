@@ -21,7 +21,7 @@ function CurrentWeatherApp()
         setOutput(res.data)
       }
     ).catch((err)=>{
-      console.log(err.response.data)
+      // console.log(err.response.data)
       setOutput(err.response.data)
     })
   }
