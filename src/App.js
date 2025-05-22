@@ -12,7 +12,8 @@ function CurrentWeatherApp()
   }
 
   const showreport = ()=>{
-    const apikey = "ac537bbe836e81e36aa7fffa32d483f3"
+
+    const apikey = `${process.env.REACT_APP_WEATHER_API_KEY}`
     var apiurl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`
     console.log(apiurl)
     axios.get(apiurl).then(
@@ -26,7 +27,9 @@ function CurrentWeatherApp()
     })
   }
   return(
-    <div className="align-items-center justify-content-center text-center min-vh-100">
+    
+    <div className="align-items-center justify-content-center text-center min-vh-100 mt-5">
+    <title>Current Weather App</title>
     <h1><span className="text-primary">Welcome to Current Weather App</span></h1>
     <p><b>This app gives the current weather data of your cities</b></p>
     <label><b>Enter your city:</b> </label>
@@ -38,7 +41,7 @@ function CurrentWeatherApp()
     {output !== null && output.cod === 200 &&
     <>
       <h3><u>Weather Report:</u></h3>
-      <h4>{"Main: "+output.weather[0].main}</h4>
+      <h4>{"Weather now: "+output.weather[0].main}</h4>
       <h4>{"Description: "+output.weather[0].description}</h4>
       <h4>{"Wind speed: "+output.wind.speed}</h4>
     </> 
