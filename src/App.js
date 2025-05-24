@@ -38,8 +38,8 @@ function CurrentWeatherApp()
     <br></br><br></br>
 
     {output !== null && output.cod === 200 && output.wind.gust !==undefined &&
-    <div >
-      <h3><u>Weather Report:</u></h3>
+    <>
+      <h3><u>Weather Now</u></h3>
       <h4>{"Status: "+output.weather[0].main}</h4>
       <h4>{"Description: "+output.weather[0].description}</h4>
       <h4>{"Wind speed: "+output.wind.speed+" m/sec"}</h4>
@@ -48,7 +48,7 @@ function CurrentWeatherApp()
       <h4>{"Temperature: "+`${(output.main.temp - 273.15).toFixed(1)}`} &deg;C</h4>
       <h4>{"Pressure: "+output.main.pressure+" hPa"}</h4>
       <h4>{"Humidity: "+output.main.humidity+" %"}</h4>
-    </div> 
+    </>
     }
 
     {output !== null && output.cod === 200 && output.wind.gust === undefined &&
