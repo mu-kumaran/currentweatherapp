@@ -17,7 +17,7 @@ function CurrentWeatherApp()
     var apiurl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`
     axios.get(apiurl).then(
       (res) => {
-        // console.log(res.data)
+        console.log(res.data)
         setOutput(res.data)
       }
     ).catch((err)=>{
@@ -39,9 +39,11 @@ function CurrentWeatherApp()
 
     {output !== null && output.cod === 200 && output.wind.gust !==undefined &&
     <>
+      <h5>Lat,Lon&nbsp;: {output["coord"]["lat"]},&nbsp;{output["coord"]["lon"]}</h5>
+      <h5>City: {output.name}, Country code: {output.sys.country}</h5>
       <h3><u>Weather Now</u></h3>
-      <h4>{"Status: "+output.weather[0].main}</h4>
-      <h4>{"Description: "+output.weather[0].description}</h4>
+      <h4>{"Status: "+output["weather"][0]["main"]}</h4>
+      <h4>{"Description: "+output["weather"][0]["description"]}</h4>
       <h4>{"Wind speed: "+output.wind.speed+" m/sec"}</h4>
       <h4>{"Wind direction: "+output.wind.deg+" degrees"}</h4>
       <h4>{"Wind gust: "+output.wind.gust+" m/sec"}</h4>
@@ -53,9 +55,11 @@ function CurrentWeatherApp()
 
     {output !== null && output.cod === 200 && output.wind.gust === undefined &&
     <div >
-      <h3><u>Weather Report:</u></h3>
-      <h4>{"Status: "+output.weather[0].main}</h4>
-      <h4>{"Description: "+output.weather[0].description}</h4>
+      <h5>Lat,Lon&nbsp;: {output["coord"]["lat"]},&nbsp;{output["coord"]["lon"]}</h5>
+      <h5>City: {output.name}, Country code: {output.sys.country}</h5>
+      <h3><u>Weather Now:</u></h3>
+      <h4>{"Status: "+output["weather"][0]["main"]}</h4>
+      <h4>{"Description: "+output["weather"][0]["description"]}</h4>
       <h4>{"Wind speed: "+output.wind.speed+" m/sec"}</h4>
       <h4>{"Wind direction: "+output.wind.deg+" degrees"}</h4>
       <h4>{"Temperature: "+`${(output.main.temp - 273.15).toFixed(1)}`} &deg;C</h4>
